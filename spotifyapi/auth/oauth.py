@@ -1,4 +1,5 @@
 import webbrowser
+import socket
 
 from .utils import parse_spotify_http_response
 from .utils import StateTokenException
@@ -30,6 +31,11 @@ def perform_authorization_code_flow():
 
     # create server that runs at the redirect URI. This is used to catch the
     # response sent from the OAuth authentication
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
+    ip = s.getsockname()[0]
+
     server = OAuthServer(("127.0.0.1", 8080))
 
     # generate a uri with the required Oauth headers and open it in a webbrowser
