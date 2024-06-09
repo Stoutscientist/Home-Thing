@@ -21,7 +21,7 @@ class SpotifyApi:
     lyric_container_scopes = {"jsname": "YS01Ge"}
 
     def __init__(self, clear=True, **kwargs):
-        self.current_song = None
+        self.current_time = None
         self.clear_screen = clear
 
         # track the access and refresh tokens, used to access the user's spotify data
@@ -139,8 +139,10 @@ class SpotifyApi:
 
         song, artist, time = self.__get_current_song()
 
-        self.current_song = song
-        self.__pretty_print(song, artist, time)
+        if round(time / 1000) != self.current_time and round(time / 1000):
+
+            self.current_time = round(time / 1000)
+            self.__pretty_print(song, artist, time)
 
     def serve_forever(self, interval: float = 0.1):
         """
