@@ -114,7 +114,9 @@ class SpotifyApi:
         """
         prints out the song title, artist, and lyrics
         """
-        [os.system("cls") if os.name == "nt" else print("\033c", end="")]        song_header = song_title + " by " + artist
+        
+        [os.system("cls") if os.name == "nt" else print("\033c", end="")]
+        song_header = song_title + " by " + artist
         print(song_header)
         print("-" * len(song_header))
         print(timedelta(seconds=round(time / 1000)))
