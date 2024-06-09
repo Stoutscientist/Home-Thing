@@ -36,7 +36,7 @@ def perform_authorization_code_flow():
     s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
     ip = s.getsockname()[0]
 
-    server = OAuthServer(("127.0.0.1", 8080))
+    server = OAuthServer((ip, 8080))
 
     # generate a uri with the required Oauth headers and open it in a webbrowser
     auth_uri, code_verifier, state_token = generate_client_PKCE()
